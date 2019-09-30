@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style type="text/css">
+        *{margin:0px; padding:0px;}
+        body{font-size:14px;}
+        #app{width:1000px; margin:10px auto;}
+        #bigImg{float:left; margin-right:10px;}
+        .item{
+            width:340px;
+            line-height:30px;
+            box-sizing: border-box;
+            background:#f7f7f7;
+            border:1px solid #f7f7f7;
+            margin:10px 0px;
+            float:left;
+        }
+        .item img{vertical-align:middle; margin-right:10px;}
+        .select{ border:1px solid darkred;}
+    </style>
+</head>
+<body>
+<div id="app">
+    <img :src="img" id="bigImg"/>
+    <p>颜色选择</p>
+    <div v-for="(item,index) in ary"
+         :class=['item',{'select':current==index}] @click="click(index)">
+        <img :src="item.url" width="50" height="50" style="float: left"/>
+        <p style="float: left">{{item.name}}</p></div>
+    </div>
+<script>
+    new Vue({
+        el:"#app",
+        data(){
+            return {
+                ary: [
+                    {
+                        name: '粉雪山（南笙初妤）',
+                        url: 'https://img.alicdn.com/imgextra/i3/1744362897/O1CN01MvSrbz1XGrwqusaxq_!!1744362897.jpg_400x400q90.jpg'
+                    },
+                    {
+                        name: '不忘初心',
+                        url: 'https://img.alicdn.com/imgextra/i1/1744362897/O1CN01wlCsb41XGrxdHE8jq_!!1744362897.jpg_400x400q90.jpg'
+                    },
+                    {
+                        name: '粉雪山+乒乓菊（暮雪）',
+                        url: 'https://img.alicdn.com/imgextra/i3/1744362897/O1CN018g9LIK1XGrxBf1y7N_!!1744362897.jpg_400x400q90.jpg'
+                    },
+                    {
+                        name: '戴安娜',
+                        url: 'https://img.alicdn.com/imgextra/i1/1744362897/O1CN011fQ4pB1XGrxBf2uSL_!!1744362897.jpg_400x400q90.jpg'
+                    }
+                ],
+                current: -1,
+                img: "https://img.alicdn.com/imgextra/i3/1744362897/O1CN01MvSrbz1XGrwqusaxq_!!1744362897.jpg_400x400q90.jpg"
+            }
+        },
+        methods:{
+            click:function(index){
+                this.current=index;
+                this.img=this.ary[index].url
+
+
+            }
+        }
+    })
+</script>
+</body>
+</html>
